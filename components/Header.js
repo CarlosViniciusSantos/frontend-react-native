@@ -8,7 +8,7 @@ export default function Header() {
       <View style={styles.user} >
         <Image
           style={styles.avatar}
-          source="https://i.pinimg.com/236x/45/80/91/458091fec21537d40eb19a0cf21c4f8a.jpg"
+          source={require('../assets/avatar-hidan.jpg')}
         />
         <Text style={styles.name}> Carlos Vinicius</Text>
       </View>
@@ -19,13 +19,12 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
     backgroundColor: '#2f0636',
-    justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 15
+    padding: 20,
+    paddingTop:35,
   },
   user: {
     flexDirection: 'row',
