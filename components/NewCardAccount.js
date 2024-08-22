@@ -1,10 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from 'expo-image'
 
-export default function CardAccount({service, userName, imgUrl}){
-
-
-
+export default function NewCardAccount({service, userName, imgUrl}){
     return(
         <View style={styles.card}>
             <Image
@@ -22,26 +19,27 @@ export default function CardAccount({service, userName, imgUrl}){
 
 const styles = StyleSheet.create({
     card:{
-        padding: 10,
         borderStyle: 'solid',
         borderColor:'#EEEEEE',
-        borderWidth: 1,
-        flexDirection: 'row',
-        gap: 15,
-        borderRadius:10
-        
+        borderWidth: 1, 
+        borderRadius:30
     },
     logo:{
-        width:60,
-        height:60
+        width:'100%',
+        height:150,
+        borderTopLeftRadius:30,
+        borderTopRightRadius:30
     },
     content:{
-        gap:8
+        gap:15,
+        alignItems:'center'
     },
     service:{
-        fontSize: 17
+        fontSize: 25,
+        fontWeight:'bold'
     },
     username:{
-        color: '#BBBBBB'
+        color: 'white',
+        fontSize:15
     }
 })
