@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Image } from 'expo-image'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import { useNavigation } from "expo-router";
 
-export default function NewCardAccount({ id, service, userName, imgUrl, accounts, setAccounts }) {
+export default function NewCardAccount({ id, service, userName,pass, imgUrl, accounts, setAccounts }) {
+    const navigation = useNavigation()
 
     const handleDelete = async () => {
         const response = await fetch(`http://localhost:3000/account/${id}`, {
@@ -24,17 +26,19 @@ export default function NewCardAccount({ id, service, userName, imgUrl, accounts
 
     return (
         <View style={styles.card}>
-            <Image
-                style={styles.logo}
-                source={imgUrl}
-            />
+            <Pressable onPress={() => navigation.navigate('showPass', {imgUrl, pass, service, userName}) }>
+                <Image
+                    style={styles.logo}
+                    source={imgUrl}
+                />
+            </Pressable>
 
             <View style={styles.content}>
                 <Text style={styles.service}>{service}</Text>
                 <Text style={styles.username}>{userName}</Text>
                 <Pressable onPress={handleDelete} style={styles.del}>
-                        <FontAwesome6 name="trash" size={17} color="white" />
-                        <Text style={styles.txtdel}>EXCLUIR</Text>
+                    <FontAwesome6 name="trash" size={17} color="white" />
+                    <Text style={styles.txtdel}>EXCLUIR</Text>
                 </Pressable>
             </View>
         </View>
@@ -66,17 +70,17 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15
     },
-    del:{
-        flexDirection:'row',
-        padding:5,
-        backgroundColor:'red',
-        borderRadius:5,
-        borderWidth:1,
-        marginBottom:10,
-        gap:5
+    del: {
+        flexDirection: 'row',
+        padding: 5,
+        backgroundColor: 'red',
+        borderRadius: 5,
+        borderWidth: 1,
+        marginBottom: 10,
+        gap: 5
     },
-    txtdel:{
-        fontWeight:'bold',
-        color:'white'
+    txtdel: {
+        fontWeight: 'bold',
+        color: 'white'
     }
 })

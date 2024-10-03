@@ -1,18 +1,22 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Image } from 'expo-image'
 import Entypo from '@expo/vector-icons/Entypo';
+import { useNavigation, Link } from 'expo-router';
 
 export default function Header() {
+  const navigation = useNavigation()
   return (
     <View style={styles.header}>
       <View style={styles.user} >
         <Image
           style={styles.avatar}
-          source={require('../assets/avatar-hidan.jpg')}
+          source={require('../../assets/avatar-hidan.jpg')}
         />
         <Text style={styles.name}> Carlos Vinicius</Text>
       </View>
-      <Entypo style={styles.menu} name="menu" size={30} color="white" />
+      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+        <Entypo style={styles.menu} name="plus" size={30} color="white" />
+      </TouchableOpacity>
     </View>
   )
 }
@@ -24,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 20,
-    paddingTop:35,
+    paddingTop: 35,
   },
   user: {
     flexDirection: 'row',
