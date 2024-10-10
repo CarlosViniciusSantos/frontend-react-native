@@ -18,6 +18,7 @@ export default function HomeLayout() {
       <Stack.Screen name="index" options={{title:"Home", headerShown:false}}/>
       <Stack.Screen name="signup"  options={{title:"Cadastrar"}}/>
       <Stack.Screen name="showPass"  options={{title:"Ver Senha"}}/>
+      <Stack.Screen name="update"  options={{title:"Atualizar"}}/>
     </Stack>
   );
 }

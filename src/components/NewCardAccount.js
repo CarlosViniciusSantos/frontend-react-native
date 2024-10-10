@@ -1,47 +1,26 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Image } from 'expo-image'
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import { useNavigation } from "expo-router";
+import { useRouter } from "expo-router";
 
-export default function NewCardAccount({ id, service, userName,pass, imgUrl, accounts, setAccounts }) {
-    const navigation = useNavigation()
+export default function NewCardAccount({ id, service, userName, pass, imgUrl, accounts, setAccounts }) {
 
-    const handleDelete = async () => {
-        const response = await fetch(`http://localhost:3000/account/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        if (response.ok) {
-            const data = await response.json()
-            console.log(data)
-            const newAccounts = accounts.filter((item) => item.id !== id)
-            setAccounts(newAccounts)
-            return
-        }
-        console.log('Erro ao deletar conta')
-        return
-    }
+    const router = useRouter()
 
     return (
-        <View style={styles.card}>
-            <Pressable onPress={() => navigation.navigate('showPass', {imgUrl, pass, service, userName}) }>
+        <Pressable onPress={() => router.push({pathname: '/showPass',params: { id }})}>
+            <View style={styles.card}>
                 <Image
                     style={styles.logo}
                     source={imgUrl}
                 />
-            </Pressable>
 
-            <View style={styles.content}>
-                <Text style={styles.service}>{service}</Text>
-                <Text style={styles.username}>{userName}</Text>
-                <Pressable onPress={handleDelete} style={styles.del}>
-                    <FontAwesome6 name="trash" size={17} color="white" />
-                    <Text style={styles.txtdel}>EXCLUIR</Text>
-                </Pressable>
+                <View style={styles.content}>
+                    <Text style={styles.service}>{service}</Text>
+                    <Text style={styles.username}>{userName}</Text>
+
+                </View>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     button: ({ pressed }) => [{
         backgroundColor: pressed ? 'black' : '#2f0636',
         alignItems: "center",
-        marginVertical: 10,
+        marginVertical: 3,
         borderRadius: 10,
         paddingVertical: 5
     }],

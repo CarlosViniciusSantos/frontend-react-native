@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect,  } from 'react'
 import { View, Text, StyleSheet } from "react-native";
 // import CardAccount from "./CardAccount";
 import NewCardAccount from "./NewCardAccount";
-import { useLocalSearchParams, useFocusEffect } from 'expo-router';
-
+import { useAccountStore } from '../stores/useAccountStore';
 
 export default function Content() {
-    const [accounts, setAccounts] = useState([])
-    const params = useLocalSearchParams()
-    const newAccount = params?.newAccount
+
+    const {accounts, setAccounts} = useAccountStore()
     
     useEffect(() => {
         const getAccounts = async () => {
