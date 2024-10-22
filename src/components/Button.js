@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginVertical: 3,
         borderRadius: 10,
-        paddingVertical: 5
+        paddingVertical: 5,
+        paddingHorizontal: 4
     }],
     textCad:{
         color:'white'

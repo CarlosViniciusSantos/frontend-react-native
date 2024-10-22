@@ -14,7 +14,7 @@ export default function Header() {
         />
         <Text style={styles.name}> Carlos Vinicius</Text>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+      <TouchableOpacity onPress={() => navigation.navigate('create-account')}>
         <Entypo style={styles.menu} name="plus" size={30} color="white" />
       </TouchableOpacity>
     </View>
