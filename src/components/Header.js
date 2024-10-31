@@ -1,24 +1,28 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet} from 'react-native'
 import { Image } from 'expo-image'
-import Entypo from '@expo/vector-icons/Entypo';
-import { useNavigation, Link } from 'expo-router';
+import Feather from '@expo/vector-icons/Feather'
+import { Link } from 'expo-router'
+import { useLoginStore } from '../stores/useLoginStore'
 
-export default function Header() {
-  const navigation = useNavigation()
-  return (
-    <View style={styles.header}>
-      <View style={styles.user} >
-        <Image
-          style={styles.avatar}
-          source={require('../../assets/avatar-hidan.jpg')}
-        />
-        <Text style={styles.name}> Carlos Vinicius</Text>
-      </View>
-      <TouchableOpacity onPress={() => navigation.navigate('create-account')}>
-        <Entypo style={styles.menu} name="plus" size={30} color="white" />
-      </TouchableOpacity>
-    </View>
-  )
+export default function Header(){
+
+    const {name, avatar} = useLoginStore()
+
+    return (
+        <View style={styles.header}>
+            <View style={styles.user}>
+                <Image 
+                    style={styles.avatar}
+                    source={avatar} //Local
+                    //source="https://avatars.githubusercontent.com/u/4259630?v=4"
+                />
+                <Text style={styles.name}>{name}</Text>
+            </View>
+            <Link href="create-account">
+                <Feather style={styles.menu} name="plus" size={24} color="black" />
+            </Link>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

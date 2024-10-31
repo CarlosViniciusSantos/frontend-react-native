@@ -3,12 +3,15 @@ import { View, Text, TextInput, StyleSheet } from "react-native"
 import Button from "../components/Button"
 import { useRouter } from "expo-router"
 import { useAccountStore } from "../stores/useAccountStore"
+import { useLoginStore } from "../stores/useLoginStore"
 
 export default function CreateAccount() {
 
     const {addAccount} = useAccountStore()
 
     const router = useRouter()
+
+    const {accessToken} = useLoginStore()
 
     const [txtServico, setTxtServico] = useState('')
     const [txtUsername, setTxtUsername] = useState('')
@@ -27,7 +30,8 @@ export default function CreateAccount() {
         const response = await fetch('http://localhost:3000/account', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(account)
         })
