@@ -1,70 +1,58 @@
-import { useEffect,  } from 'react'
-import { View, Text, StyleSheet } from "react-native";
-// import CardAccount from "./CardAccount";
-import NewCardAccount from "./NewCardAccount";
-import { useAccountStore } from '../stores/useAccountStore';
+import { useEffect } from 'react'
+import {View, StyleSheet, Text} from 'react-native'
+import CardAccount from './CardAccount'
+import { useAccountStore } from '../stores/useAccountStore'
+import { fetchAuth } from '../utils/fetchAuth'
 
-export default function Content() {
+export default function Content(){
 
-    const {accounts, setAccounts} = useAccountStore()
-    
-    useEffect(() => {
+  const { accounts, setAccounts } = useAccountStore()
+
+  console.log('Accounts: ', accounts)
+  
+   useEffect(() => {
         const getAccounts = async () => {
-            const response = await fetch('http://localhost:3000/account/list')
-            if (response.ok) {
-                const data = await response.json()
-                console.log(data)
-                setAccounts(data.accounts)
-                return
+            const response = await fetchAuth('http://localhost:3000/account/list')
+            if(response.ok){
+              const data = await response.json()
+              console.log(data)
+              setAccounts(data.accounts)
+              return
             }
             console.log('Erro ao carregar accounts')
             return
         }
 
         getAccounts()
-    }, [])
+   }, [])
 
 
     return (
         <View style={styles.content}>
+               
+        { accounts.length === 0 && <Text>Loading...</Text>}
 
-
-            {accounts.length === 0 && <Text>Loading...</Text>}
-            {/* <Link href={{
-                pathname:'signup',
-                params:{teste: "Clicou no Link"}
-            }}>Cadastro</Link> */}
-            {
-                accounts.map((account) =>
-                    <NewCardAccount
-                        key={account.id}
-                        id={account.id}
-                        service={account.service}
-                        imgUrl={account.logo_image}
-                        userName={account.username}
-                        pass={account.pass}
-                        accounts={accounts}
-                        setAccounts={setAccounts}
-                    />
-                )
-            }
+        {
+          accounts.map( (account) => 
+            <CardAccount
+              key={account.id}
+              id={account.id} 
+              service={account.service}
+              imgUrl={account.logo_image}
+              userName={account.username}
+            /> 
+          )
+        }
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     content: {
-        backgroundColor: '#85495e',
-        padding: 15,
-        gap: 20
-        // justifyContent: 'center',
-        // alignItems: 'center'
-    },
-    button: ({ pressed }) => [{
-        backgroundColor: pressed ? 'black' : '#2f0636',
-        alignItems: "center",
-        marginVertical: 10,
-        borderRadius: 10,
-        paddingVertical: 5
-    }],
+        gap: 10,
+        //backgroundColor: "#545656",
+        padding: 15
+        //justifyContent: 'center',
+        //alignItems: 'center'
+      }
 })

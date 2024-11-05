@@ -26,30 +26,28 @@ export default function Header(){
 }
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#2f0636',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 20,
-    paddingTop: 35,
-  },
-  user: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25
-  },
-  name: {
-    fontWeight: '600',
-    fontSize: 18,
-    color: 'white'
-  },
-  menu: {
-    padding: 10
-  }
+    header: {
+        //backgroundColor: "#899986",
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 15,
+    },
+    user: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        borderRadius: 25
+    },
+    name: {
+        fontWeight: '600',
+        fontSize: 18
+    },
+    menu: {
+        padding: 10
+    }
 })
